@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Themecontroller;
 use Illuminate\Support\Facades\Route;
@@ -10,9 +11,9 @@ use App\Http\Controllers\ContactController;
 
 Route::controller(Themecontroller::class)->name('theme.')->group(function(){
         Route::get('/i','index')->name('index');
-        Route::get('/category','category')->name('category');
+        Route::get('/category/{id}','category')->name('category');
         Route::get('/contact','contact')->name('contact');
-        Route::get('/single-blog','singleblog')->name('singleblog');
+        // Route::get('/single-blog','singleblog')->name('singleblog');
        
        
 });
@@ -24,6 +25,9 @@ Route::post('/subscriber/store', [SubscriberController::class,'store'])->name('s
 //CONTACT ROUTER STORE
 Route::post('/contact/store', [ContactController::class,'store'])->name('contact.store');
 
+//Blog Controller
+Route::get('/myblogs',[BlogController::class,'myblog'])->name('blogs.My-blogs');
+Route::resource('blogs',BlogController::class);
 
 Route::get('/', function () {
     return view('welcome');
