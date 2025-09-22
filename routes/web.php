@@ -6,6 +6,7 @@ use App\Http\Controllers\Themecontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CommentController;
 
 //THEME ROUTE
 
@@ -28,6 +29,9 @@ Route::post('/contact/store', [ContactController::class,'store'])->name('contact
 //Blog Controller
 Route::get('/myblogs',[BlogController::class,'myblog'])->name('blogs.My-blogs');
 Route::resource('blogs',BlogController::class);
+
+// Comment Controller
+Route::post('/comments/store',[CommentController::class,'store'])->name('comments.store');
 
 Route::get('/', function () {
     return view('welcome');
